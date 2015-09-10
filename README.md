@@ -39,3 +39,13 @@ public class CustomerRepoTest
 }
 ```
 [<img src="http://i.imgur.com/2yf60gf.png" alt="Productivity Visual Studio add-in for C#, VB.NET, XML, XAML, ASP.NET and more">](http://www.jetbrains.com/resharper/features/index.html)
+
+
+# publish nuget package
+
+
+..\.nuget\nuget pack MongoRepository.Net45.csproj
+
+.\.nuget\nuget push MongoRepository.2.0.0.nupkg -Source https://www.myget.org/F/lotosbin-public-nuget/api/v2/package
+
+..\.nuget\nuget setapikey key -Source https://www.myget.org/F/lotosbin-public-nuget/api/v2/package 

@@ -3,7 +3,7 @@
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>MongoRepository</id>
     <title>MongoRepository</title>
-    <version>1.6.8</version>
+    <version>2.0.0</version>
     <authors>tgeek, RobIII</authors>
     <owners>tgeek</owners>
     <licenseUrl>http://mongorepository.codeplex.com/license</licenseUrl>
@@ -32,6 +32,6 @@
     <file src="\MongoRepository\bin\Release\MongoRepository.Net45.XML" target="lib\net45" />
     <file src="\MongoRepository\app.config.transform" target="content" />
     <file src="\MongoRepository\web.config.transform" target="content" />
-    <file src="\Help\Output\MongoRepository.chm" target="content" />
+    <!--<file src="\Help\Output\MongoRepository.chm" target="content" />-->
   </files>
 </package>
