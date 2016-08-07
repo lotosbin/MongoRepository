@@ -40,6 +40,7 @@
     <DocumentationFile>bin\Release\MongoRepository.Net45.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Reference Include="MongoDB.Bson, Version=2.0.1.27, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MongoDB.Bson.2.0.1\lib\net45\MongoDB.Bson.dll</HintPath>
       <Private>True</Private>
@@ -54,6 +55,14 @@
     </Reference>
     <Reference Include="MongoDB.Driver.Legacy, Version=2.0.1.27, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\mongocsharpdriver.2.0.1\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
+=======
+    <Reference Include="MongoDB.Bson, Version=1.11.0.92, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <HintPath>..\packages\mongocsharpdriver.1.11.0\lib\net35\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.11.0.92, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <HintPath>..\packages\mongocsharpdriver.1.11.0\lib\net35\MongoDB.Driver.dll</HintPath>
+>>>>>>> RobThree/master
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -76,7 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config.transform" />
-    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="web.config.transform" />
   </ItemGroup>
