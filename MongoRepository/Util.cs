@@ -2,7 +2,7 @@
 {
     using MongoDB.Driver;
     using System;
-    using System.Configuration;
+    using System.Reflection;
 
     /// <summary>
     /// Internal miscellaneous utility functions.
@@ -10,17 +10,13 @@
     internal static class Util<U>
     {
         /// <summary>
-        /// The default key MongoRepository will look for in the App.config or Web.config file.
-        /// </summary>
-        private const string DefaultConnectionstringName = "MongoServerSettings";
-
-        /// <summary>
         /// Retrieves the default connectionstring from the App.config or Web.config file.
         /// </summary>
         /// <returns>Returns the default connectionstring from the App.config or Web.config file.</returns>
+        [Obsolete("",true)]
         public static string GetDefaultConnectionString()
         {
-            return ConfigurationManager.ConnectionStrings[DefaultConnectionstringName].ConnectionString;
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -95,7 +91,7 @@
         private static string GetCollectionName<T>() where T : IEntity<U>
         {
             string collectionName;
-            if (typeof(T).BaseType.Equals(typeof(object)))
+            if (typeof(T).GetTypeInfo().BaseType.Equals(typeof(object)))
             {
                 collectionName = GetCollectioNameFromInterface<T>();
             }
@@ -121,7 +117,7 @@
             string collectionname;
 
             // Check to see if the object (inherited from Entity) has a CollectionName attribute
-            var att = Attribute.GetCustomAttribute(typeof(T), typeof(CollectionName));
+            var att = typeof(CollectionName).GetTypeInfo().GetCustomAttribute(typeof(T));
             if (att != null)
             {
                 // It does! Return the value specified by the CollectionName attribute
@@ -145,7 +141,7 @@
             string collectionname;
 
             // Check to see if the object (inherited from Entity) has a CollectionName attribute
-            var att = Attribute.GetCustomAttribute(entitytype, typeof(CollectionName));
+            var att = typeof(CollectionName).GetTypeInfo().GetCustomAttribute(entitytype);
             if (att != null)
             {
                 // It does! Return the value specified by the CollectionName attribute
@@ -156,9 +152,9 @@
                 if (typeof(Entity).IsAssignableFrom(entitytype))
                 {
                     // No attribute found, get the basetype
-                    while (!entitytype.BaseType.Equals(typeof(Entity)))
+                    while (!entitytype.GetTypeInfo().BaseType.Equals(typeof(Entity)))
                     {
-                        entitytype = entitytype.BaseType;
+                        entitytype = entitytype.GetTypeInfo().BaseType;
                     }
                 }
                 collectionname = entitytype.Name;

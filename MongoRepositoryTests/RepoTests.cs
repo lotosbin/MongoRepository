@@ -1,17 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using MongoRepository;
 using MongoRepositoryTests.Entities;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 
 namespace MongoRepositoryTests
 {
     //TODO: We REALLY need some decent tests and cleanup this mess.
 
-    [TestClass]
     public class RepoTests
     {
         [TestInitialize]
@@ -58,16 +55,16 @@ namespace MongoRepositoryTests
 
             _customerRepo.Add(customer);
 
-            Assert.IsTrue(_customerMan.Exists);
+            Assert.True(_customerMan.Exists);
 
-            Assert.IsNotNull(customer.Id);
+            Assert.NotNull(customer.Id);
 
             // fetch it back 
             var alreadyAddedCustomer = _customerRepo.Where(c => c.FirstName == "Bob").Single();
 
-            Assert.IsNotNull(alreadyAddedCustomer);
-            Assert.AreEqual(customer.FirstName, alreadyAddedCustomer.FirstName);
-            Assert.AreEqual(customer.HomeAddress.Address1, alreadyAddedCustomer.HomeAddress.Address1);
+            Assert.NotNull(alreadyAddedCustomer);
+            Assert.Equal(customer.FirstName, alreadyAddedCustomer.FirstName);
+            Assert.Equal(customer.HomeAddress.Address1, alreadyAddedCustomer.HomeAddress.Address1);
 
             alreadyAddedCustomer.Phone = "10110111";
             alreadyAddedCustomer.Email = "dil.bob@fastmail.org";

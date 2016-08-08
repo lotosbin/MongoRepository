@@ -8,6 +8,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Reflection;
 
     /// <summary>
     /// Deals with entities in MongoDb.
@@ -21,16 +22,6 @@
         /// MongoCollection field.
         /// </summary>
         protected internal MongoCollection<T> collection;
-
-        /// <summary>
-        /// Initializes a new instance of the MongoRepository class.
-        /// Uses the Default App/Web.Config connectionstrings to fetch the connectionString and Database name.
-        /// </summary>
-        /// <remarks>Default constructor defaults to "MongoServerSettings" key for connectionstring.</remarks>
-        public MongoRepository()
-            : this(Util<TKey>.GetDefaultConnectionString())
-        {
-        }
 
         /// <summary>
         /// Initializes a new instance of the MongoRepository class.
@@ -99,7 +90,7 @@
         /// <returns>The Entity T.</returns>
         public virtual T GetById(TKey id)
         {
-            if (typeof(T).IsSubclassOf(typeof(Entity)))
+            if (typeof(T).GetTypeInfo().IsSubclassOf(typeof(Entity)))
             {
                 return this.GetById(new ObjectId(id as string));
             }
@@ -168,7 +159,7 @@
         /// <param name="id">The entity's id.</param>
         public virtual void Delete(TKey id)
         {
-            if (typeof(T).IsSubclassOf(typeof(Entity)))
+            if (typeof(T).GetTypeInfo().IsSubclassOf(typeof(Entity)))
             {
                 this.collection.Remove(Query.EQ("_id", new ObjectId(id as string)));
             }
@@ -290,13 +281,6 @@
     public class MongoRepository<T> : MongoRepository<T, string>, IRepository<T>
         where T : IEntity<string>
     {
-        /// <summary>
-        /// Initializes a new instance of the MongoRepository class.
-        /// Uses the Default App/Web.Config connectionstrings to fetch the connectionString and Database name.
-        /// </summary>
-        /// <remarks>Default constructor defaults to "MongoServerSettings" key for connectionstring.</remarks>
-        public MongoRepository()
-            : base() { }
 
         /// <summary>
         /// Initializes a new instance of the MongoRepository class.

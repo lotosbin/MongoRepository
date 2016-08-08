@@ -29,15 +29,6 @@
 
         /// <summary>
         /// Initializes a new instance of the MongoRepositoryManager class.
-        /// Uses the Default App/Web.Config connectionstrings to fetch the connectionString and Database name.
-        /// </summary>
-        /// <remarks>Default constructor defaults to "MongoServerSettings" key for connectionstring.</remarks>
-        public MongoRepositoryManager()
-            : this(Util<TKey>.GetDefaultConnectionString()) {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the MongoRepositoryManager class.
         /// </summary>
         /// <param name="connectionString">Connectionstring to use for connecting to MongoDB.</param>
         public MongoRepositoryManager(string connectionString) {
@@ -259,14 +250,6 @@
     /// <remarks>Entities are assumed to use strings for Id's.</remarks>
     public class MongoRepositoryManager<T> : MongoRepositoryManager<T, string>, IRepositoryManager<T>
         where T : IEntity<string> {
-        /// <summary>
-        /// Initializes a new instance of the MongoRepositoryManager class.
-        /// Uses the Default App/Web.Config connectionstrings to fetch the connectionString and Database name.
-        /// </summary>
-        /// <remarks>Default constructor defaults to "MongoServerSettings" key for connectionstring.</remarks>
-        public MongoRepositoryManager()
-            : base() { }
-
         /// <summary>
         /// Initializes a new instance of the MongoRepositoryManager class.
         /// </summary>
