@@ -193,7 +193,7 @@
         /// <param name="predicate">The expression.</param>
         public virtual void Delete(Expression<Func<T, bool>> predicate)
         {
-            foreach (T entity in this.collection.AsQueryable<T>().Where(predicate))
+            foreach (T entity in this.collection.AsQueryable<T>().Where(predicate.Compile()))
             {
                 this.Delete(entity.Id);
             }
@@ -223,7 +223,7 @@
         /// <returns>True when an entity matching the predicate exists, false otherwise.</returns>
         public virtual bool Exists(Expression<Func<T, bool>> predicate)
         {
-            return this.collection.AsQueryable<T>().Any(predicate);
+            return this.collection.AsQueryable<T>().Any(predicate.Compile());
         }
 
         
