@@ -18,5 +18,8 @@
         }
       }
     }
+  },
+  "packOptions": {
+    "projectUrl": "https://github.com/lotosbin/MongoRepository"
   }
 }
