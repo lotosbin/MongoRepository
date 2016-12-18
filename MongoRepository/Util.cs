@@ -117,11 +117,11 @@
             string collectionname;
 
             // Check to see if the object (inherited from Entity) has a CollectionName attribute
-            var att = typeof(CollectionName).GetTypeInfo().GetCustomAttribute(typeof(T));
+            var att = typeof(T).GetTypeInfo().GetCustomAttribute<CollectionName>();
             if (att != null)
             {
                 // It does! Return the value specified by the CollectionName attribute
-                collectionname = ((CollectionName)att).Name;
+                collectionname = att.Name;
             }
             else
             {
@@ -141,7 +141,7 @@
             string collectionname;
 
             // Check to see if the object (inherited from Entity) has a CollectionName attribute
-            var att = typeof(CollectionName).GetTypeInfo().GetCustomAttribute(entitytype);
+            var att = entitytype.GetTypeInfo().GetCustomAttribute<CollectionName>();
             if (att != null)
             {
                 // It does! Return the value specified by the CollectionName attribute
